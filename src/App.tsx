@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CreateParkingLot from './Components/CreateParkingLot';
+import VehicalAllotment from './Components/VehicalAllotment';
+// import { ParkingLotContextProvider } from './Context/ParkingLotContext';
+import ExitParkingLot from './Components/ExitParkingLot';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      {/* <ParkingLotContextProvider> */}
+      <Provider store={store}>
+        <Routes>
+          <Route path='/' element={<CreateParkingLot />} />
+          <Route path='/allotment' element={<VehicalAllotment />} />
+          <Route path='/exit' element={<ExitParkingLot />} />
+        </Routes>
+      </Provider>
+      {/* </ParkingLotContextProvider> */}
+    </BrowserRouter>
   );
 }
 
